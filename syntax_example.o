@@ -1,19 +1,58 @@
 
+struct Map<gKeyType><gElementType> {
+	
+}
+
+
+struct Array<gElementsType> {
+	mem iElementSize,
+	mem iBeginning,
+	mem iSpace,
+	int iElements,
+};
+
+function Array<gElementsType>._new_ () {
+	Array<gElementsType> aA = Array<gElementsType>.new();
+	aA.iSpace = 8;
+	aA.iElementSize = types.typesize(gElementsType);
+	aA.iBeginning = mem.allocate(aA.iSpace * aA.iElementSize);
+	aA.iElements = 0;
+}
+
+function Array.vAdd (Array aA, GENERIC:gElementsType gElement) {
+	aA.iElements ++;
+	if (aA.iElements > aA.iSpace) {
+		aA.iSpace *= 2;
+		mem iNewBeginning = mem.allocate(aA.iSpace * aA.tType.iBytes);
+		int iElement = -1;
+		while (iElement < aA.iElements - 1) {
+			iElement ++;
+			aA.tType at (iNewBeginning + iElement) = aA.tType at (aA.iBeginning + iElement);
+		}
+		mem.deallocate(aA.iBeginning);
+		aA.iBeginning = iNewBeginning;
+		aA.tType at (aA.iBeginning + iElements - 1) = gElement;
+	}
+}
+
+keyword [foreach] ( Array aA  ) {
+}
+
 method double.nSrt ( double nN ) double {
 	return sqrt(nN);
 }
 
-dump((4.5).nSqrt());
+Utility.dump((4.5).nSqrt());
 
 static method Matrix.mIdentity () Matrix {
-	return Matrix.construct(1, 0, 0, 0, 1, 0);
+	return Matrix.new(1d, 0d, 0d, 0d, 1d, 0d);
 }
 
-static method Matrix._construct_ () {
+static method Matrix._new_ () {
 	return Matrix.mIdentity();
 }
 
-static method Matrix._construct_ ( double n0, n1, n2, n3, n4, n5 ) Matrix {
+static method Matrix._new_ ( double n0, n1, n2, n3, n4, n5 ) Matrix {
 	Matrix mReturn = make Matrix();
 	construct n0, n1, n2, n3, n4, n5;
 }
@@ -24,7 +63,7 @@ function _*_ ( Matrix nA, Matrix nB ) Matrix , error {
 	
 }
 
-Matrix nA = new Matrix();
+Matrix nA = Matrix.new();
 
 struct Matrix { double n0, n1, n2, n3, n4, n5 };
 
