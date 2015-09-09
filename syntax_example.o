@@ -1,19 +1,30 @@
 
-struct Matrix { double n0, n1, n2, n3, n4, n5 };
-
-method Matrix.construct (Matrix mM, double n0, n1, n2, n3, n4, n5) {
-	construct n0, n1, n2, n3, n4, n5;
-}
-
-method double.sqrt (nN) {
+method double.nSrt ( double nN ) double {
 	return sqrt(nN);
 }
 
-function _*_ (Matrix nA, Matrix nB) {
+dump((4.5).nSqrt());
+
+static method Matrix.mIdentity () Matrix {
+	return Matrix.construct(1, 0, 0, 0, 1, 0);
+}
+
+static method Matrix._construct_ () {
+	return Matrix.mIdentity();
+}
+
+static method Matrix._construct_ ( double n0, n1, n2, n3, n4, n5 ) Matrix {
+	Matrix mReturn = make Matrix();
+	construct n0, n1, n2, n3, n4, n5;
+}
+
+function _*_ ( Matrix nA, Matrix nB ) Matrix , error {
 	
-	
+	return 
 	
 }
 
 Matrix nA = new Matrix();
+
+struct Matrix { double n0, n1, n2, n3, n4, n5 };
 
