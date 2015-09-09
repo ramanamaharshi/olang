@@ -1,0 +1,19 @@
+
+struct Matrix { double n0, n1, n2, n3, n4, n5 };
+
+method Matrix.construct (Matrix mM, double n0, n1, n2, n3, n4, n5) {
+	construct n0, n1, n2, n3, n4, n5;
+}
+
+method double.sqrt (nN) {
+	return sqrt(nN);
+}
+
+function _*_ (Matrix nA, Matrix nB) {
+	
+	
+	
+}
+
+Matrix nA = new Matrix();
+
